@@ -172,11 +172,17 @@
     /* ─── LIGHTBOX ─── */
     #lightbox {
       display: none; position: fixed; inset: 0; z-index: 300;
-      background: #000;
+      background: #111;
       flex-direction: column; align-items: center; justify-content: center;
+      padding: 2rem;
     }
     #lightbox.open { display: flex; }
-    #lightbox-img { max-width: 96vw; max-height: 82vh; object-fit: contain; display: block; }
+    #lightbox-img {
+      max-width: 94vw; max-height: 80vh;
+      width: auto; height: auto;
+      object-fit: contain; display: block;
+      background: transparent;
+    }
 
     .lb-nav {
       display: flex; align-items: center; justify-content: space-between;
@@ -507,10 +513,28 @@
   }
 
   // ── Lightbox ──
-  // Liste des images — à remplir quand les photos arrivent
-  // Exemple : const photos = ["photos/RdL_0237_full.jpg", "photos/RdL_0257_full.jpg", "photos/RdL_0265_full.jpg", "photos/RdL_0270_full.jpg", "photos/RdL_0310_full.jpg", "photos/Roe_Falling_full.jpg", "photos/Bonnet_kick_full.jpg", "photos/Bonnet_Ombre_full.jpg", "photos/Bonnet_Venus_full.jpg"];
-  const photos = ["photos/RdL_0202_full.jpg", "photos/RdL_0205_full.jpg", "photos/RdL_0223_full.jpg", "photos/RdL_0237_full.jpg", "photos/RdL_0257_full.jpg", "photos/RdL_0265_full.jpg", "photos/RdL_0270_full.jpg", "photos/RdL_0297_full.jpg", "photos/RdL_0310_full.jpg", "photos/RdL_0376_full.jpg", "photos/Roe_Burning1_full.jpg", "photos/Roe_Burning2_full.jpg", "photos/Roe_Falling_full.jpg", "photos/Roe_Voile_full.jpg", "photos/Bonnet_kick_full.jpg", "photos/Bonnet_Ombre_full.jpg", "photos/Bonnet_Venus_full.jpg"];
-  const photoCredits = ["© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Jeronimo Roe", "© Olivier Bonnet", "© Olivier Bonnet", "© Olivier Bonnet"];
+  const photos = [
+    "photos/RdL_0237_full.jpg",
+    "photos/RdL_0257_full.jpg",
+    "photos/RdL_0265_full.jpg",
+    "photos/RdL_0270_full.jpg",
+    "photos/RdL_0310_full.jpg",
+    "photos/Roe_Falling_full.jpg",
+    "photos/Bonnet_kick_full.jpg",
+    "photos/Bonnet_Ombre_full.jpg",
+    "photos/Bonnet_Venus_full.jpg"
+  ];
+  const photoCredits = [
+    "© Christophe Raynaud de Lage",
+    "© Christophe Raynaud de Lage",
+    "© Christophe Raynaud de Lage",
+    "© Christophe Raynaud de Lage",
+    "© Christophe Raynaud de Lage",
+    "© Jeronimo Roe",
+    "© Olivier Bonnet",
+    "© Olivier Bonnet",
+    "© Olivier Bonnet"
+  ];
   let lbIndex = 0;
 
   function openLightbox(i) {
