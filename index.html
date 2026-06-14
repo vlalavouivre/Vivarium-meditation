@@ -306,12 +306,23 @@
   <p class="page-subtitle">Galerie</p>
 
   <div class="galerie-grid" id="galerie-grid">
-    <!-- Les photos seront ajoutées ici -->
-    <!-- Exemple d'une photo : <div class="galerie-thumb" onclick="openLightbox(0)"><img src="photo1.jpg" alt=""></div> -->
-    <div class="galerie-empty"><span>À venir</span></div>
-    <div class="galerie-empty"></div>
-    <div class="galerie-empty"></div>
-    <div class="galerie-empty"></div>
+        <div class="galerie-thumb" onclick="openLightbox(0)"><img src="photos/RdL_0202_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(1)"><img src="photos/RdL_0205_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(2)"><img src="photos/RdL_0223_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(3)"><img src="photos/RdL_0237_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(4)"><img src="photos/RdL_0257_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(5)"><img src="photos/RdL_0265_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(6)"><img src="photos/RdL_0270_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(7)"><img src="photos/RdL_0297_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(8)"><img src="photos/RdL_0310_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(9)"><img src="photos/RdL_0376_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(10)"><img src="photos/Roe_Burning1_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(11)"><img src="photos/Roe_Burning2_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(12)"><img src="photos/Roe_Falling_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(13)"><img src="photos/Roe_Voile_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(14)"><img src="photos/Bonnet_kick_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(15)"><img src="photos/Bonnet_Ombre_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(16)"><img src="photos/Bonnet_Venus_thumb.jpg" alt="Vivarium" loading="lazy"></div>
   </div>
 </div>
 
@@ -359,6 +370,7 @@
 <div id="lightbox">
   <button class="lb-close" onclick="closeLightbox()">✕</button>
   <img id="lightbox-img" src="" alt="" />
+  <div id="lb-credit" style="font-family:'Raleway',sans-serif;font-weight:200;font-size:0.48rem;letter-spacing:0.2em;color:rgba(240,237,232,0.25);margin-top:0.8rem;text-align:center;"></div>
   <div class="lb-nav">
     <button class="lb-arrow" onclick="lbPrev()">‹</button>
     <span class="lb-counter" id="lb-counter"></span>
@@ -488,7 +500,8 @@
   // ── Lightbox ──
   // Liste des images — à remplir quand les photos arrivent
   // Exemple : const photos = ['photo1.jpg', 'photo2.jpg', ...];
-  const photos = [];
+  const photos = ["photos/RdL_0202_full.jpg", "photos/RdL_0205_full.jpg", "photos/RdL_0223_full.jpg", "photos/RdL_0237_full.jpg", "photos/RdL_0257_full.jpg", "photos/RdL_0265_full.jpg", "photos/RdL_0270_full.jpg", "photos/RdL_0297_full.jpg", "photos/RdL_0310_full.jpg", "photos/RdL_0376_full.jpg", "photos/Roe_Burning1_full.jpg", "photos/Roe_Burning2_full.jpg", "photos/Roe_Falling_full.jpg", "photos/Roe_Voile_full.jpg", "photos/Bonnet_kick_full.jpg", "photos/Bonnet_Ombre_full.jpg", "photos/Bonnet_Venus_full.jpg"];
+  const photoCredits = ["© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Jeronimo Roe", "© Jeronimo Roe", "© Jeronimo Roe", "© Jeronimo Roe", "© Olivier Bonnet", "© Olivier Bonnet", "© Olivier Bonnet"];
   let lbIndex = 0;
 
   function openLightbox(i) {
@@ -496,6 +509,7 @@
     lbIndex = i;
     document.getElementById('lightbox-img').src = photos[lbIndex];
     document.getElementById('lb-counter').textContent = `${lbIndex + 1} / ${photos.length}`;
+    document.getElementById('lb-credit').textContent = photoCredits[lbIndex] || '';
     document.getElementById('lightbox').classList.add('open');
   }
 
