@@ -58,8 +58,8 @@
 
     /* Onglets */
     .tabs{display:flex;width:100%;max-width:340px;border-bottom:1px solid rgba(240,237,232,.2);margin-bottom:1.5rem;flex-shrink:0}
-    .tab{flex:1;padding:.7rem 0;cursor:pointer;font-family:'Raleway',sans-serif;font-weight:200;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(240,237,232,.45);text-align:center;border-bottom:1px solid transparent;margin-bottom:-1px;transition:color .3s,border-color .3s}
-    .tab.active{color:rgba(240,237,232,.9);border-bottom-color:rgba(240,237,232,.75)}
+    .tab{flex:1;padding:.7rem 0;cursor:pointer;font-family:'Raleway',sans-serif;font-weight:200;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(240,237,232,.6);text-align:center;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .3s,border-color .3s}
+    .tab.active{color:#fff;border-bottom-color:#fff;font-weight:300}
 
     .panel{display:none;width:100%;max-width:340px}
     .panel.active{display:block}
@@ -236,7 +236,7 @@ const photosSet={items:["photos/Bonnet_kick_full.jpg","photos/RdL_0237_full.jpg"
 const booksSet={items:["photos/book1_full.jpg","photos/book2_full.jpg","photos/book3_full.jpg"],credits:["","",""]};
 let curSet=photosSet, lbI=0;
 
-function openLightbox(i,set){curSet=set==='lectures'?booksSet:photosSet;lbI=i;updLb();document.getElementById('lightbox').classList.add('open');}
+function openLightbox(i,set){curSet=(set==='lectures'||set==='books')?booksSet:photosSet;lbI=i;updLb();document.getElementById('lightbox').classList.add('open');}
 function closeLb(){document.getElementById('lightbox').classList.remove('open');document.getElementById('lb-img').src='';}
 function lbNext(){lbI=(lbI+1)%curSet.items.length;updLb();}
 function lbPrev(){lbI=(lbI-1+curSet.items.length)%curSet.items.length;updLb();}
