@@ -153,6 +153,25 @@
       display: grid; grid-template-columns: repeat(2, 1fr);
       gap: 0.5rem; width: 100%; max-width: 340px;
     }
+    .galerie-section-title {
+      width: 100%; max-width: 340px;
+      font-family: 'Raleway', sans-serif; font-weight: 200;
+      font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(240,237,232,0.45); margin-top: 1.8rem; margin-bottom: 0.8rem;
+      text-align: left; padding-left: 0.1rem;
+    }
+    .galerie-books {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem; width: 100%; max-width: 340px;
+    }
+    .galerie-book {
+      aspect-ratio: 2/3; overflow: hidden; cursor: pointer;
+      background: rgba(240,237,232,0.05);
+      border: 1px solid rgba(240,237,232,0.1);
+      transition: opacity 0.3s ease;
+    }
+    .galerie-book:active { opacity: 0.7; }
+    .galerie-book img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .galerie-thumb {
       aspect-ratio: 1; overflow: hidden; cursor: pointer;
       background: rgba(240,237,232,0.05);
@@ -300,7 +319,12 @@
   <p class="vivarium" style="margin-bottom:1.5rem;">Vivarium</p>
   <p class="page-subtitle">Galerie</p>
   <div class="galerie-grid">
-    <div class="galerie-thumb" onclick="openLightbox(0)"><img src="photos/RdL_0237_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(0)"><img src="photos/RdL_0237_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(1)"><img src="photos/RdL_0270_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(2)"><img src="photos/RdL_0310_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(3)"><img src="photos/Bonnet_kick_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(4)"><img src="photos/Bonnet_Venus_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+  </div>
         <div class="galerie-thumb" onclick="openLightbox(1)"><img src="photos/RdL_0257_thumb.jpg" alt="Vivarium" loading="lazy"></div>
         <div class="galerie-thumb" onclick="openLightbox(2)"><img src="photos/RdL_0265_thumb.jpg" alt="Vivarium" loading="lazy"></div>
         <div class="galerie-thumb" onclick="openLightbox(3)"><img src="photos/RdL_0270_thumb.jpg" alt="Vivarium" loading="lazy"></div>
@@ -309,6 +333,15 @@
         <div class="galerie-thumb" onclick="openLightbox(6)"><img src="photos/Bonnet_kick_thumb.jpg" alt="Vivarium" loading="lazy"></div>
         <div class="galerie-thumb" onclick="openLightbox(7)"><img src="photos/Bonnet_Ombre_thumb.jpg" alt="Vivarium" loading="lazy"></div>
         <div class="galerie-thumb" onclick="openLightbox(8)"><img src="photos/Bonnet_Venus_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+  </div>
+  <p class="galerie-section-title">Pour aller plus loin</p>
+  <div class="galerie-books">
+        <div class="galerie-book" onclick="openLightbox(5)"><img src="photos/book1_thumb.jpg" alt="Livre" loading="lazy"></div>
+        <div class="galerie-book" onclick="openLightbox(6)"><img src="photos/book2_thumb.jpg" alt="Livre" loading="lazy"></div>
+        <div class="galerie-book" onclick="openLightbox(7)"><img src="photos/book3_thumb.jpg" alt="Livre" loading="lazy"></div>
+  </div>
+        <div class="galerie-book" onclick="openLightbox(10)"><img src="photos/book2_thumb.jpg" alt="Eckhart Tolle — Le pouvoir du moment présent" loading="lazy"></div>
+        <div class="galerie-book" onclick="openLightbox(11)"><img src="photos/book3_thumb.jpg" alt="Morizot & Neyret — Liberté, Dignité, Habitabilité" loading="lazy"></div>
   </div>
 </div>
 
@@ -467,8 +500,8 @@
     return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
   }
 
-  const photos = ["photos/RdL_0237_full.jpg", "photos/RdL_0257_full.jpg", "photos/RdL_0265_full.jpg", "photos/RdL_0270_full.jpg", "photos/RdL_0310_full.jpg", "photos/Roe_Falling_full.jpg", "photos/Bonnet_kick_full.jpg", "photos/Bonnet_Ombre_full.jpg", "photos/Bonnet_Venus_full.jpg"];
-  const photoCredits = ["© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Jeronimo Roe", "© Olivier Bonnet", "© Olivier Bonnet", "© Olivier Bonnet"];
+  const photos = ["photos/RdL_0237_full.jpg", "photos/RdL_0270_full.jpg", "photos/RdL_0310_full.jpg", "photos/Bonnet_kick_full.jpg", "photos/Bonnet_Venus_full.jpg", "photos/book1_full.jpg", "photos/book2_full.jpg", "photos/book3_full.jpg"];
+  const photoCredits = ["© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Olivier Bonnet", "© Olivier Bonnet", "", "", ""];
   let lbIndex = 0;
 
   function openLightbox(i) {
