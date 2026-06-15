@@ -7,67 +7,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Raleway:wght@200;300&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --black: #05080f; --blue-dark: #0d1a2e; --white: #f0ede8;
-      --gold: #c4a87a; --led-white: #ffffff; --led-glow: rgba(160,200,255,0.18);
-    }
-    html, body {
-      height: 100%; background: var(--black); color: var(--white);
-      font-family: 'Raleway', sans-serif; font-weight: 200;
-      overflow: hidden; -webkit-tap-highlight-color: transparent;
-    }
+    :root { --black: #05080f; --blue-dark: #0d1a2e; --white: #f0ede8; --gold: #c4a87a; --led-white: #ffffff; --led-glow: rgba(160,200,255,0.18); }
+    html, body { height: 100%; background: var(--black); color: var(--white); font-family: 'Raleway', sans-serif; font-weight: 200; overflow: hidden; -webkit-tap-highlight-color: transparent; }
     .bg { position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse at 50% 40%, var(--blue-dark) 0%, var(--black) 70%); }
-    .grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.038;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 200px; }
-    .page {
-      position: fixed; inset: 0; z-index: 10;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 1.5rem 2.5rem calc(4.5rem + env(safe-area-inset-bottom));
-      text-align: center; opacity: 0; pointer-events: none; transition: opacity 0.8s ease;
-    }
+    .grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.038; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 200px; }
+
+    .page { position: fixed; inset: 0; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem 2.5rem calc(4.5rem + env(safe-area-inset-bottom)); text-align: center; opacity: 0; pointer-events: none; transition: opacity 0.8s ease; }
     .page.active { opacity: 1; pointer-events: all; }
-    .vivarium {
-      font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.55rem;
-      letter-spacing: 0.45em; text-transform: uppercase; color: var(--white); opacity: 0.95; margin-bottom: 3rem;
-    }
-    .invite {
-      font-family: 'Raleway', sans-serif; font-weight: 300; font-size: 0.92rem;
-      line-height: 2.4; letter-spacing: 0.12em; color: var(--white); opacity: 0.95; margin-bottom: 2.4rem;
-    }
-    .label-sm {
-      font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 0.6rem;
-      letter-spacing: 0.35em; text-transform: uppercase; color: var(--white); opacity: 0.9;
-    }
-    .duration {
-      font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.85rem;
-      color: var(--gold); opacity: 1; letter-spacing: 0.08em;
-    }
-    .page-subtitle {
-      font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 0.7rem;
-      letter-spacing: 0.22em; text-transform: uppercase; color: var(--white); opacity: 0.75; margin-bottom: 2.5rem;
-    }
+
+    .vivarium { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.55rem; letter-spacing: 0.45em; text-transform: uppercase; color: var(--white); opacity: 0.95; margin-bottom: 3rem; }
+    .invite { font-family: 'Raleway', sans-serif; font-weight: 300; font-size: 0.92rem; line-height: 2.4; letter-spacing: 0.12em; color: var(--white); opacity: 0.95; margin-bottom: 2.4rem; }
+    .label-sm { font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--white); opacity: 0.9; }
+    .duration { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.85rem; color: var(--gold); opacity: 1; letter-spacing: 0.08em; }
+    .page-subtitle { font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--white); opacity: 0.75; margin-bottom: 1.8rem; }
+
     .led { width: 150px; height: 8px; display: flex; align-items: center; margin: 0 auto; }
-    .led-line {
-      width: 100%; height: 1px; position: relative;
-      background: linear-gradient(90deg, transparent 0%, rgba(220,235,255,0.1) 10%,
-        rgba(220,235,255,0.88) 36%, var(--led-white) 50%,
-        rgba(220,235,255,0.88) 64%, rgba(220,235,255,0.1) 90%, transparent 100%);
-    }
-    .led-line::before {
-      content: ''; position: absolute; top: 50%; left: 5%; right: 5%;
-      transform: translateY(-50%); height: 10px;
-      background: linear-gradient(90deg, transparent 0%, var(--led-glow) 30%,
-        rgba(180,215,255,0.22) 50%, var(--led-glow) 70%, transparent 100%);
-      filter: blur(4px);
-    }
+    .led-line { width: 100%; height: 1px; position: relative; background: linear-gradient(90deg, transparent 0%, rgba(220,235,255,0.1) 10%, rgba(220,235,255,0.88) 36%, var(--led-white) 50%, rgba(220,235,255,0.88) 64%, rgba(220,235,255,0.1) 90%, transparent 100%); }
+    .led-line::before { content: ''; position: absolute; top: 50%; left: 5%; right: 5%; transform: translateY(-50%); height: 10px; background: linear-gradient(90deg, transparent 0%, var(--led-glow) 30%, rgba(180,215,255,0.22) 50%, var(--led-glow) 70%, transparent 100%); filter: blur(4px); }
+
     .play-wrap { display: flex; flex-direction: column; align-items: center; gap: 0.9rem; cursor: pointer; user-select: none; }
-    .play-btn {
-      width: 56px; height: 56px; border-radius: 50%;
-      border: 1px solid rgba(200,215,240,0.85);
-      display: flex; align-items: center; justify-content: center;
-      position: relative; background: rgba(160,200,255,0.05); transition: transform 0.3s ease;
-    }
+    .play-btn { width: 56px; height: 56px; border-radius: 50%; border: 1px solid rgba(200,215,240,0.85); display: flex; align-items: center; justify-content: center; position: relative; background: rgba(160,200,255,0.05); transition: transform 0.3s ease; }
     .play-btn::before { content: ''; position: absolute; inset: -7px; border-radius: 50%; border: 1px solid rgba(160,200,255,0.3); }
     .play-wrap:active .play-btn { transform: scale(0.95); }
     .triangle { width: 0; height: 0; border-style: solid; border-width: 7px 0 7px 12px; border-color: transparent transparent transparent rgba(220,235,255,0.95); margin-left: 3px; }
@@ -75,6 +34,7 @@
     .pause-bar { width: 3px; height: 14px; background: rgba(220,235,255,0.95); border-radius: 1px; }
     @keyframes pulse-ring { 0% { transform: scale(1); opacity: 0.4; } 100% { transform: scale(1.7); opacity: 0; } }
     .play-btn.playing::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid rgba(160,200,255,0.5); animation: pulse-ring 2.5s ease-out infinite; }
+
     .tracks { display: flex; flex-direction: column; gap: 2rem; width: 100%; max-width: 280px; margin-top: 2rem; }
     .track { display: flex; flex-direction: column; gap: 0.8rem; }
     .track-header { display: flex; align-items: center; gap: 1rem; cursor: pointer; }
@@ -89,34 +49,40 @@
     .prog-times { display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.55rem; letter-spacing: 0.15em; color: rgba(240,237,232,0.6); }
 
     /* ─── GALERIE ─── */
-    #page-galerie { justify-content: flex-start; padding-top: 3rem; overflow-y: auto; }
-    .galerie-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; width: 100%; max-width: 340px; }
+    #page-galerie { justify-content: flex-start; padding-top: 2.5rem; overflow-y: auto; }
+
+    /* Onglets */
+    .galerie-tabs { display: flex; gap: 0; width: 100%; max-width: 340px; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(240,237,232,0.15); }
+    .galerie-tab {
+      flex: 1; padding: 0.6rem 0; cursor: pointer;
+      font-family: 'Raleway', sans-serif; font-weight: 200;
+      font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(240,237,232,0.45); text-align: center;
+      border-bottom: 1px solid transparent; margin-bottom: -1px;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+    .galerie-tab.active { color: rgba(240,237,232,0.9); border-bottom-color: rgba(240,237,232,0.7); }
+
+    .galerie-panel { display: none; width: 100%; max-width: 340px; }
+    .galerie-panel.active { display: block; }
+
+    .galerie-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
     .galerie-thumb { aspect-ratio: 1; overflow: hidden; cursor: pointer; background: rgba(240,237,232,0.05); border: 1px solid rgba(240,237,232,0.1); transition: opacity 0.3s ease; }
     .galerie-thumb:active { opacity: 0.7; }
     .galerie-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .galerie-section-title { width: 100%; max-width: 340px; font-family: 'Raleway', sans-serif; font-weight: 200; font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(240,237,232,0.55); margin-top: 2rem; margin-bottom: 0.8rem; text-align: left; padding-left: 0.1rem; }
-    .galerie-books { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; width: 100%; max-width: 340px; margin-bottom: 5rem; }
-    .galerie-book { aspect-ratio: 2/3; overflow: hidden; cursor: pointer; background: rgba(240,237,232,0.05); border: 1px solid rgba(240,237,232,0.1); transition: opacity 0.3s ease; }
-    .galerie-book:active { opacity: 0.7; }
-    .galerie-book img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    /* ─── LIGHTBOX — flèches fixes sur les côtés ─── */
-    #lightbox {
-      display: none; position: fixed; inset: 0; z-index: 300;
-      background: #0a0a0a;
-      align-items: center; justify-content: center;
-    }
+    /* Livres — en proportion réelle, 3 colonnes */
+    .galerie-books { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; padding: 0.5rem 0 5rem; }
+    .galerie-book { cursor: pointer; transition: opacity 0.3s ease; }
+    .galerie-book:active { opacity: 0.7; }
+    .galerie-book img { width: 100%; height: auto; display: block; border: 1px solid rgba(240,237,232,0.1); }
+
+    /* ─── LIGHTBOX ─── */
+    #lightbox { display: none; position: fixed; inset: 0; z-index: 300; background: #0a0a0a; align-items: center; justify-content: center; }
     #lightbox.open { display: flex; }
     #lightbox-img { max-width: 80vw; max-height: 82vh; width: auto; height: auto; object-fit: contain; display: block; }
     .lb-close { position: absolute; top: 1.2rem; right: 1.2rem; background: transparent; border: none; color: rgba(240,237,232,0.7); font-size: 1.5rem; cursor: pointer; padding: 0.5rem; z-index: 10; }
-    .lb-arrow {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      background: transparent; border: 1px solid rgba(240,237,232,0.35);
-      color: rgba(240,237,232,0.75); font-size: 1.4rem;
-      width: 40px; height: 40px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; z-index: 10;
-    }
+    .lb-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: transparent; border: 1px solid rgba(240,237,232,0.35); color: rgba(240,237,232,0.75); font-size: 1.4rem; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; }
     .lb-prev { left: 0.8rem; }
     .lb-next { right: 0.8rem; }
     .lb-bottom { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
@@ -131,7 +97,6 @@
     .contact-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; flex-shrink: 0; }
     .contact-btn.email-btn { margin-top: 1.5rem; opacity: 0.85; border-color: rgba(200,215,240,0.45); }
 
-    /* ─── NAV ─── */
     .test-nav { position: fixed; bottom: calc(0.8rem + env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); z-index: 100; display: flex; gap: 0.5rem; }
     .test-btn { font-family: 'Raleway', sans-serif; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; background: transparent; border: 1px solid rgba(240,237,232,0.45); color: rgba(240,237,232,0.75); padding: 0.5rem 0.8rem; cursor: pointer; border-radius: 1px; }
   </style>
@@ -183,20 +148,37 @@
 
 <!-- PAGE 3 — GALERIE -->
 <div class="page" id="page-galerie">
-  <p class="vivarium" style="margin-bottom:1.5rem;">Vivarium</p>
-  <p class="page-subtitle">Galerie</p>
-  <div class="galerie-grid">
-    <div class="galerie-thumb" onclick="openLightbox(0)"><img src="photos/RdL_0237_thumb.jpg" alt="Vivarium" loading="lazy"></div>
-        <div class="galerie-thumb" onclick="openLightbox(1)"><img src="photos/RdL_0270_thumb.jpg" alt="Vivarium" loading="lazy"></div>
-        <div class="galerie-thumb" onclick="openLightbox(2)"><img src="photos/RdL_0310_thumb.jpg" alt="Vivarium" loading="lazy"></div>
-        <div class="galerie-thumb" onclick="openLightbox(3)"><img src="photos/Bonnet_kick_thumb.jpg" alt="Vivarium" loading="lazy"></div>
-        <div class="galerie-thumb" onclick="openLightbox(4)"><img src="photos/Bonnet_Venus_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+  <p class="vivarium" style="margin-bottom:1.2rem;">Vivarium</p>
+
+  <!-- Onglets -->
+  <div class="galerie-tabs">
+    <div class="galerie-tab active" id="tab-photos" onclick="switchTab('photos')">Photos</div>
+    <div class="galerie-tab" id="tab-lectures" onclick="switchTab('lectures')">Lectures</div>
   </div>
-  <p class="galerie-section-title">Pour aller plus loin</p>
-  <div class="galerie-books">
-    <div class="galerie-book" onclick="openLightbox(5)"><img src="photos/book1_thumb.jpg" alt="Livre" loading="lazy"></div>
-        <div class="galerie-book" onclick="openLightbox(6)"><img src="photos/book2_thumb.jpg" alt="Livre" loading="lazy"></div>
-        <div class="galerie-book" onclick="openLightbox(7)"><img src="photos/book3_thumb.jpg" alt="Livre" loading="lazy"></div>
+
+  <!-- Panel Photos -->
+  <div class="galerie-panel active" id="panel-photos">
+    <div class="galerie-grid">
+      <div class="galerie-thumb" onclick="openLightbox(0,'photos')"><img src="photos/Bonnet_kick_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+      <div class="galerie-thumb" onclick="openLightbox(1,'photos')"><img src="photos/RdL_0237_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+      <div class="galerie-thumb" onclick="openLightbox(2,'photos')"><img src="photos/RdL_0270_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+      <div class="galerie-thumb" onclick="openLightbox(3,'photos')"><img src="photos/RdL_0310_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+      <div class="galerie-thumb" onclick="openLightbox(4,'photos')"><img src="photos/Bonnet_Venus_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+    </div>
+        <div class="galerie-thumb" onclick="openLightbox(1,'photos')"><img src="photos/RdL_0270_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(2,'photos')"><img src="photos/RdL_0310_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(3,'photos')"><img src="photos/Bonnet_kick_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+        <div class="galerie-thumb" onclick="openLightbox(4,'photos')"><img src="photos/Bonnet_Venus_thumb.jpg" alt="Vivarium" loading="lazy"></div>
+    </div>
+  </div>
+
+  <!-- Panel Lectures -->
+  <div class="galerie-panel" id="panel-lectures">
+    <div class="galerie-books">
+      <div class="galerie-book" onclick="openLightbox(0,'books')"><img src="photos/book1_thumb.jpg" alt="Livre" loading="lazy"></div>
+        <div class="galerie-book" onclick="openLightbox(1,'books')"><img src="photos/book2_thumb.jpg" alt="Livre" loading="lazy"></div>
+        <div class="galerie-book" onclick="openLightbox(2,'books')"><img src="photos/book3_thumb.jpg" alt="Livre" loading="lazy"></div>
+    </div>
   </div>
 </div>
 
@@ -207,14 +189,10 @@
   <p class="page-subtitle">Restons en contact</p>
   <div class="led" style="margin-bottom:2.5rem;"><div class="led-line"></div></div>
   <div class="contact-btns">
-    <a class="contact-btn" href="https://www.instagram.com/vlalavouivre/" target="_blank">
-      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>Instagram</a>
-    <a class="contact-btn" href="https://www.facebook.com/profile.php?id=100063800670138" target="_blank">
-      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</a>
-    <a class="contact-btn" href="https://www.vlalavouivre.com" target="_blank">
-      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>vlalavouivre.com</a>
-    <a class="contact-btn email-btn" href="mailto:vlalavouivre@gmail.com">
-      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Écrire un message</a>
+    <a class="contact-btn" href="https://www.instagram.com/vlalavouivre/" target="_blank"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>Instagram</a>
+    <a class="contact-btn" href="https://www.facebook.com/profile.php?id=100063800670138" target="_blank"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</a>
+    <a class="contact-btn" href="https://www.vlalavouivre.com" target="_blank"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>vlalavouivre.com</a>
+    <a class="contact-btn email-btn" href="mailto:vlalavouivre@gmail.com"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Écrire un message</a>
   </div>
 </div>
 
@@ -242,14 +220,20 @@
 <audio id="audio-med" src="meditation-beregere.mp3" preload="none"></audio>
 
 <script>
-  const pages = {
-    home: document.getElementById('page-home'),
-    med:  document.getElementById('page-med'),
-    galerie: document.getElementById('page-galerie'),
-    contact: document.getElementById('page-contact'),
-  };
+  // ── Pages ──
+  const pages = { home: document.getElementById('page-home'), med: document.getElementById('page-med'), galerie: document.getElementById('page-galerie'), contact: document.getElementById('page-contact') };
   function showPage(name) { Object.values(pages).forEach(p => p.classList.remove('active')); pages[name].classList.add('active'); }
 
+  // ── Onglets galerie ──
+  function switchTab(tab) {
+    document.querySelectorAll('.galerie-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.galerie-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    document.getElementById('panel-' + tab).classList.add('active');
+    currentSet = tab === 'photos' ? photosSet : booksSet;
+  }
+
+  // ── Audio ──
   const aIntro = document.getElementById('audio-intro');
   const aMed   = document.getElementById('audio-med');
   let introPlaying = false, medPlaying = false;
@@ -283,7 +267,6 @@
     document.getElementById('intro-left').textContent=fmt(aIntro.duration-aIntro.currentTime);
   });
   function seekIntro(e) { if(!aIntro.duration)return; const r=e.currentTarget.getBoundingClientRect(); aIntro.currentTime=((e.clientX-r.left)/r.width)*aIntro.duration; }
-
   function toggleMed() {
     if (introPlaying) { aIntro.pause(); introPlaying=false; setIntroUI(false); }
     if (medPlaying) { aMed.pause(); medPlaying=false; setMedUI(false); }
@@ -305,24 +288,31 @@
   function seekMed(e) { if(!aMed.duration)return; const r=e.currentTarget.getBoundingClientRect(); aMed.currentTime=((e.clientX-r.left)/r.width)*aMed.duration; }
   function fmt(s) { return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`; }
 
-  const photos = ["photos/RdL_0237_full.jpg", "photos/RdL_0270_full.jpg", "photos/RdL_0310_full.jpg", "photos/Bonnet_kick_full.jpg", "photos/Bonnet_Venus_full.jpg", "photos/book1_full.jpg", "photos/book2_full.jpg", "photos/book3_full.jpg"];
-  const photoCredits = ["© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Olivier Bonnet", "© Olivier Bonnet", "", "", ""];
+  // ── Lightbox ──
+  const photosSet = {
+    items: ["photos/Bonnet_kick_full.jpg", "photos/RdL_0237_full.jpg", "photos/RdL_0270_full.jpg", "photos/RdL_0310_full.jpg", "photos/Bonnet_Venus_full.jpg"],
+    credits: ["© Olivier Bonnet", "© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Christophe Raynaud de Lage", "© Olivier Bonnet"]
+  };
+  const booksSet = {
+    items: ["photos/book1_full.jpg","photos/book2_full.jpg","photos/book3_full.jpg"],
+    credits: ["","",""]
+  };
+  let currentSet = photosSet;
   let lbIndex = 0;
 
-  function openLightbox(i) {
+  function openLightbox(i, set) {
+    currentSet = set === 'books' ? booksSet : photosSet;
     lbIndex = i;
-    document.getElementById('lightbox-img').src = photos[i];
-    document.getElementById('lb-counter').textContent = `${i+1} / ${photos.length}`;
-    document.getElementById('lb-credit').textContent = photoCredits[i] || '';
+    updateLb();
     document.getElementById('lightbox').classList.add('open');
   }
   function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); document.getElementById('lightbox-img').src=''; }
-  function lbNext() { lbIndex=(lbIndex+1)%photos.length; updateLb(); }
-  function lbPrev() { lbIndex=(lbIndex-1+photos.length)%photos.length; updateLb(); }
+  function lbNext() { lbIndex=(lbIndex+1)%currentSet.items.length; updateLb(); }
+  function lbPrev() { lbIndex=(lbIndex-1+currentSet.items.length)%currentSet.items.length; updateLb(); }
   function updateLb() {
-    document.getElementById('lightbox-img').src=photos[lbIndex];
-    document.getElementById('lb-counter').textContent=`${lbIndex+1} / ${photos.length}`;
-    document.getElementById('lb-credit').textContent=photoCredits[lbIndex]||'';
+    document.getElementById('lightbox-img').src=currentSet.items[lbIndex];
+    document.getElementById('lb-counter').textContent=`${lbIndex+1} / ${currentSet.items.length}`;
+    document.getElementById('lb-credit').textContent=currentSet.credits[lbIndex]||'';
   }
   let touchStartX=0;
   document.getElementById('lightbox').addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX;},{passive:true});
