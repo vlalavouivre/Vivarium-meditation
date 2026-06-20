@@ -56,6 +56,12 @@
   position:relative;
   margin-top:1.2rem;
 }
+.prog-t::before{
+  content:'';
+  position:absolute;
+  left:0;right:0;
+  top:-10px;bottom:-10px;
+}
 .prog-f{
   height:1px;
   background:rgba(240,237,232,.7);
@@ -63,6 +69,18 @@
   transition:width .5s linear;
   position:absolute;
   top:0;left:0;
+}
+.prog-f::after{
+  content:'';
+  position:absolute;
+  right:-8px;
+  top:50%;
+  transform:translateY(-50%);
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 5px rgba(200,215,255,.4);
 }
 .prog-times{
   display:flex;
