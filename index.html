@@ -266,5 +266,6 @@ let tx=0;
 document.getElementById('lightbox').addEventListener('touchstart',e=>{tx=e.changedTouches[0].screenX;},{passive:true});
 document.getElementById('lightbox').addEventListener('touchend',e=>{const dx=e.changedTouches[0].screenX-tx;if(Math.abs(dx)>50){dx<0?lbNext():lbPrev();}},{passive:true});
 </script>
+<script data-goatcounter="https://medidation-vivarium.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
