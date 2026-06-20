@@ -40,8 +40,8 @@
     .play-btn.playing::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid rgba(160,200,255,.5);animation:pr 2.5s ease-out infinite}
 
     /* TRACKS */
-    .tracks{display:flex;flex-direction:column;gap:2rem;width:100%;max-width:280px;margin-top:2rem}
-    .track{display:flex;flex-direction:column;gap:.8rem}
+    .tracks{display:flex;flex-direction:column;gap:2.8rem;width:100%;max-width:280px;margin-top:2rem}
+    .track{display:flex;flex-direction:column;gap:1.4rem}
     .track-h{display:flex;align-items:center;gap:1rem;cursor:pointer}
     .track-info{display:flex;flex-direction:column;align-items:flex-start;gap:.2rem}
     .t-title{font-family:'Raleway',sans-serif;font-weight:300;font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--white);opacity:.95}
@@ -54,30 +54,44 @@
   background:rgba(240,237,232,.2);
   cursor:pointer;
   position:relative;
-  margin:8px 0;
+  border-radius:1px;
+  padding:12px 0;
+  margin:-12px 0;
+  box-sizing:content-box;
+}
+.prog-t::before{
+  content:'';
+  position:absolute;
+  left:0;right:0;
+  top:12px;
+  height:2px;
+  background:rgba(240,237,232,.2);
   border-radius:1px;
 }
     .prog-f{
-  height:100%;
+  height:2px;
   background:rgba(240,237,232,.85);
   width:0%;
   transition:width .5s linear;
   border-radius:1px;
   position:relative;
+  top:12px;
+  margin-top:-12px;
 }
 .prog-f::after{
   content:'';
   position:absolute;
-  right:-4px;
+  right:-10px;
   top:50%;
   transform:translateY(-50%);
-  width:8px;
-  height:8px;
+  width:18px;
+  height:18px;
   border-radius:50%;
   background:#fff;
-  box-shadow:0 0 4px rgba(200,215,255,.6);
+  box-shadow:0 0 6px rgba(200,215,255,.5);
+  cursor:grab;
 }
-    .prog-times{display:flex;justify-content:space-between;margin-top:.4rem;font-size:.52rem;letter-spacing:.12em;color:rgba(240,237,232,.4)}
+    .prog-times{display:flex;justify-content:space-between;margin-top:1.2rem;font-size:.52rem;letter-spacing:.12em;color:rgba(240,237,232,.4)}
 
     /* GALERIE — page spéciale avec overflow */
     #page-galerie{justify-content:flex-start;padding-top:2.5rem;overflow-y:auto;overflow-x:hidden}
@@ -161,11 +175,11 @@
     <div class="track">
       <div class="track-h" onclick="togMed()">
         <div class="play-btn" id="mb"><div class="tri" id="mt"></div><div class="pbars" id="mp"><div class="pbar"></div><div class="pbar"></div></div></div>
-        <div class="track-info"><span class="t-title">Méditation</span><span class="t-dur">15 min</span><span class="t-status" id="ms">Appuyer pour écouter</span></div>
+        <div class="track-info"><span class="t-title">Méditation</span><span class="t-dur">18 min</span><span class="t-status" id="ms">Appuyer pour écouter</span></div>
       </div>
       <div class="prog-w" id="mpw" style="opacity:0;transition:opacity .6s">
         <div class="prog-t" onclick="seekM(event)"><div class="prog-f" id="mf"></div></div>
-        <div class="prog-times"><span id="me">0:00</span><span id="ml">15:00</span></div>
+        <div class="prog-times"><span id="me">0:00</span><span id="ml">18:00</span></div>
       </div>
     </div>
   </div>
